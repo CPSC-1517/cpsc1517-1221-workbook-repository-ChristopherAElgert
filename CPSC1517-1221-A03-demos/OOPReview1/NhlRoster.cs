@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace OOPReview1
 {
@@ -50,6 +51,12 @@ namespace OOPReview1
             PlayerNumber = playerNumber;
             PlayerName = playerName;
             Position = playerPosition;
+        }
+        //override the ToString to return the Number, Name, and Position
+        public override string ToString()
+        {
+            //return base.ToString();
+            return $"{PlayerNumber}, {PlayerName}, {Position}";
         }
     }
 }

@@ -5,7 +5,10 @@ var Senators = new NhlTeams( NhlConference.Eastern, NhlDivision.Atlantic, "Senat
 Senators.GamesPlayed = 82;
 Senators.Wins = 32;
 Senators.Losses = 42;
-Senators.OvertimeLosses = 8; 
+Senators.OvertimeLosses = 7;
+
+Console.WriteLine(Senators);
+Console.WriteLine($"Points = {Senators.Points}");
 
 
 

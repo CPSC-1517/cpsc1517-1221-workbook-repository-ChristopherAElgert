@@ -111,7 +111,30 @@ namespace OOPReview1
         //Method to remove players from list
         public void RemovePlayer(int playerNumber)
         {
+            //bolean to determine whether a player is found or not
+            bool foundPlayer = false;
+            int playerIndex = -1;
 
+            //for loop to move through list
+            for(int index = 0; index < Players.Count; index++)
+            {
+                //if the player is found
+                if (Players[index].PlayerNumber == playerNumber)              
+                {
+                    //foundPlayer = true because we found the player, skips the player not found if
+                    foundPlayer = true;
+                    //determines whih player to remove later on
+                    playerIndex = index;    
+                    index = Players.Count; //stop loop
+                }
+            }
+            if (!foundPlayer)//short for for if (foundPlayer == false)
+            {
+                //throw an argumentexception if the player number does not exist
+                throw new ArgumentException($"Player #{playerNumber} does not exist");
+            }
+            //remove from the payers list the player with the matching number
+            Players.RemoveAt(playerIndex);
         }
         
         public NhlTeams(
