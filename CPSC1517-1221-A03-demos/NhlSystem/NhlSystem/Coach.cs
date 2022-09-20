@@ -18,7 +18,13 @@ namespace NhlSystem
         {
             HireDate = hireDate;
         }
+
+        public override string ToString()
+        {
+            return $"{FullName}, {HireDate}";
+        }
     }
 
+    
    
 }
