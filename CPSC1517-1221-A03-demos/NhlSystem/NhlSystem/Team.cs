@@ -78,15 +78,18 @@ namespace NhlSystem
         //define a computed property to return the total points of all players
         public int TotalPlayerPoints
         {
-            get
-            {
-                int totalPoints = 0;
-                foreach(Player currentPlayer in Player)
-                {
-                    totalPoints += currentPlayer.Points;
-                }
-                return totalPoints;
-            }
+           get
+           {
+                //    int totalPoints = 0;
+                //    foreach(Player currentPlayer in Player)
+                //    {
+                //        totalPoints += currentPlayer.Points;
+                //    }
+                //    return totalPoints;
+
+                //same as above but using LinQ
+                return Player.Sum(currentPlayer => currentPlayer.Points);
+           }
 
         }
 

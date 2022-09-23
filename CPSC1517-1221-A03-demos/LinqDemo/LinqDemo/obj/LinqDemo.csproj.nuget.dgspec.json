@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\celgert1\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj": {}
+    "C:\\Users\\celgert1\\Source\\Repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\celgert1\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj": {
+    "C:\\Users\\celgert1\\Source\\Repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\celgert1\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj",
+        "projectUniqueName": "C:\\Users\\celgert1\\Source\\Repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj",
         "projectName": "LinqDemo",
-        "projectPath": "C:\\Users\\celgert1\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj",
+        "projectPath": "C:\\Users\\celgert1\\Source\\Repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj",
         "packagesPath": "C:\\Users\\celgert1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\celgert1\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\obj\\",
+        "outputPath": "C:\\Users\\celgert1\\Source\\Repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
