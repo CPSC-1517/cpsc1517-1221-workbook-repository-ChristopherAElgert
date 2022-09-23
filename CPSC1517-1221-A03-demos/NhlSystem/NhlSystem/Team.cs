@@ -57,15 +57,20 @@ namespace NhlSystem
             }
             //validate that the newPlayer PrimaryNo is not already in use
             //using a sequential search
-            bool primaryNoFound = false;
-            foreach (Player currentPlayer in Player)
-            {
-                if (currentPlayer.PrimaryNumber == newPlayer.PrimaryNumber)
-                {
-                    primaryNoFound = true;
-                    break; // exit the foreach statement
-                }
-            }
+            //bool primaryNoFound = false;
+            //foreach (Player currentPlayer in Player)
+            //{
+            //  if (currentPlayer.PrimaryNumber == newPlayer.PrimaryNumber)
+            //    {
+            //        primaryNoFound = true;
+            //        break; // exit the foreach statement
+            //    }
+            //}
+
+            //same as block of code above
+            bool primaryNoFound = Player.Any(currentPlayer => currentPlayer.PrimaryNumber == newPlayer.PrimaryNumber);
+            
+
             if (primaryNoFound)
             {
                 throw new ArgumentException("OrimaryNumber is already in use by another player");

@@ -1,0 +1,34 @@
+{
+  "TeamName": "Edmonton Oilers",
+  "Coach": {
+    "HireDate": "2021-09-02T00:00:00",
+    "FullName": "Jay Woodcroft"
+  },
+  "Player": [
+    {
+      "Position": 2,
+      "Assists": 0,
+      "Goals": 0,
+      "PrimaryNumber": 97,
+      "Points": 0,
+      "FullName": "Connor McDavid"
+    },
+    {
+      "Position": 0,
+      "Assists": 0,
+      "Goals": 0,
+      "PrimaryNumber": 91,
+      "Points": 0,
+      "FullName": "Evander Kane"
+    },
+    {
+      "Position": 2,
+      "Assists": 0,
+      "Goals": 0,
+      "PrimaryNumber": 29,
+      "Points": 0,
+      "FullName": "Leon Draisaitl"
+    }
+  ],
+  "TotalPlayerPoints": 0
+}

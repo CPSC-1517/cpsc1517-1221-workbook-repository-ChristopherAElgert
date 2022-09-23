@@ -1,4 +1,7 @@
 ﻿using LinqDemo; // for VideoGame 
+using System.Numerics;
+using System.IO;
+using System.Text.Json;
 using static System.Console; //allows you use access all static methods in the Console class without the Console prefix 
                             //lets you just type WriteLine instead of Console.WriteLine
 
@@ -91,3 +94,6 @@ bool anyGamesLessThan50 = games.All(item => item.price < 50);
 
 //no PC games for sale?
 bool noPCGamesOnSale = !games.Any(item => item.platform == "PC");
+
+Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+
