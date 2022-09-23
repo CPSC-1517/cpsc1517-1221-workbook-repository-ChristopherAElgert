@@ -64,3 +64,46 @@ catch (ArgumentException ex)
 {
     Console.WriteLine(ex.Message);
 }
+
+Console.WriteLine("______________________________________________________________________\n");
+
+//Test creating a new Team
+//Create a new Coach for the team
+DateTime startDate = DateTime.Parse("2021-09-02");
+Coach oilersCoach = new Coach("Jay Woodcroft", startDate);
+
+//create a new team
+Team oilersTeam = new Team("Edmonton Oilers", oilersCoach);
+
+//create 3 players for the team
+Player player1 = new Player("Connor McDavid", Position.C, 97);
+Player player2 = new Player("Evander Kane", Position.LW, 91);
+Player player3 = new Player("Leon Draisaitl", Position.C, 29);
+
+//add them to the team
+oilersTeam.AddPlayer(player1);
+oilersTeam.AddPlayer(player2);
+oilersTeam.AddPlayer(player3);
+
+
+
+//assign goals and assists to each player
+player1.Goals = 44;
+player1.Assists = 79;
+
+player2.Goals = 22;
+player2.Assists = 17;
+
+player3.Goals = 55;
+player3.Assists = 55;
+
+//Check that the team has 3 players
+Console.WriteLine($"Players in team is {oilersTeam.Player.Count}");
+
+foreach(Player currentPlayer in oilersTeam.Player)
+{
+    Console.WriteLine(currentPlayer);
+}
+
+//check the TotalPlayerPoints. Should be 272
+Console.WriteLine($"Total player points is {oilersTeam.TotalPlayerPoints}");

@@ -10,10 +10,30 @@ namespace NhlSystem
     public class Player : Person
     {
         //Define an auto-implemented property for PrimaryNo
-        public int PrimaryNumber { get; set; }
+        //public int PrimaryNumber { get; set; }
         public Position Position { get; set; }
         public int Assists { get; set; }
         public int Goals { get; set; }
+
+        //Define a fully implemented property with a backing field for Primary Number
+
+        private int _primaryNumber;
+        public int PrimaryNumber
+        {
+            get
+            {
+                return _primaryNumber;
+            }
+            set
+            {
+                if(value < 0 || value > 98)
+                {
+                    throw new ArgumentOutOfRangeException("PrimaryNo must be between 0 and 98");
+                }
+
+                _primaryNumber = value;
+            }
+        }
 
         public int Points
         {
@@ -23,7 +43,7 @@ namespace NhlSystem
             }
         }
 
-        //Defome a constructor that passes FullName to the Person base class
+        //Define a constructor that passes FullName to the Person base class
         public Player(string fullName, Position position, int primaryNumber) : base(fullName)
         {
             PrimaryNumber = primaryNumber;
@@ -38,6 +58,11 @@ namespace NhlSystem
             Position = position;
             Goals = goals;
             Assists = assists;
+        }
+
+        public override string ToString()
+        {
+            return $"{FullName}, {PrimaryNumber}, {Position}, {Goals}, {Assists}, {Points}";
         }
     }
 }
