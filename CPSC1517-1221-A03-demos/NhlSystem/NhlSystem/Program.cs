@@ -100,15 +100,15 @@ player3.Goals = 55;
 player3.Assists = 55;
 
 //Check that the team has 3 players
-Console.WriteLine($"Players in team is {oilersTeam.Player.Count}");
+//Console.WriteLine($"Players in team is {oilersTeam.Player.Count}");
 
 foreach(Player currentPlayer in oilersTeam.Player)
 {
-    Console.WriteLine(currentPlayer);
+    //Console.WriteLine(currentPlayer);
 }
 
 //check the TotalPlayerPoints. Should be 272
-Console.WriteLine($"Total player points is {oilersTeam.TotalPlayerPoints}");
+//Console.WriteLine($"Total player points is {oilersTeam.TotalPlayerPoints}");
 
 static void CreatePlayersCsvFile()
 {
@@ -182,23 +182,22 @@ static void DisplayTeam(Team currentTeam)
     else
     {
         //display the team name
-        Console.WriteLine($"Tea, : {currentTeam.TeamName}");
+        Console.WriteLine($"Team : {currentTeam.TeamName}");
         //display the coach name and hire date
         Console.WriteLine($"{currentTeam.Coach.FullName} hired on {currentTeam.Coach.HireDate.ToString("MMM, dd, yyyy")}");
         //display the name, number, position, goals, assists, and points for each player
         foreach (Player currentPlayer in currentTeam.Player)
         {
-            Console.WriteLine(currentPlayer);
+            Console.WriteLine(currentPlayer.ToString());
         }
     }
     
 }
 
-
-
-
-
-
+//create a new team by reading from the file
+//var csvTeam = ReadPlayersCsvFile();
+//display the team that was read
+//DisplayTeam(csvTeam);
 
 static void CreateTeamJsonFile()
 {
@@ -229,4 +228,34 @@ static void CreateTeamJsonFile()
     File.WriteAllText(TeamJsonFile, jsonString);
 }
 
+Console.WriteLine("______________________________________________________________________\n");
+
 //CreateTeamJsonFile();
+
+static Team ReadFromJsonFile()
+{
+    Team currentTeam = null!;
+
+    try
+    {
+        const string TeamJsonFile = "../../../Team.Json";
+        string jsonString = File.ReadAllText(TeamJsonFile);
+        JsonSerializerOptions options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            IncludeFields = true,
+        };
+
+        currentTeam = JsonSerializer.Deserialize<Team>(jsonString, options);
+    }
+    catch (Exception ex)
+    {
+
+        Console.WriteLine($"Error reading from json file with exception {ex.Message}");
+    }
+
+    return currentTeam;
+}
+
+var jsonTeam = ReadFromJsonFile();
+DisplayTeam(jsonTeam);
