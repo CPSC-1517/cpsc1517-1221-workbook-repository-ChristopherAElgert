@@ -64,5 +64,57 @@ namespace NhlSystem
         {
             return $"{FullName}, {PrimaryNumber}, {Position}, {Goals}, {Assists}, {Points}";
         }
+
+        //
+        public static Player ParseCsv(string line)
+        {
+            //define a constant for the delimiter character
+            const char Delimiter = ',';
+
+            //split the line into an array where each value is separated by a Delimiter
+            string[] tokens = line.Split(Delimiter);
+
+            //verify that there are 6 elements in the array
+            if(tokens.Length != 6)
+            {
+                throw new FormatException($"CSV line must contain exavtly 6 values. {line}");
+            }
+            //column order is fillName, primaryNumber, position, goals, assists, points
+            string fullName = tokens[0];
+            int primaryNumber = int.Parse(tokens[1]);
+            Position position = (Position) Enum.Parse(typeof(Position), tokens[2]);
+            int goals = int.Parse(tokens[3]);
+            int assists = int.Parse(tokens[4]);
+            int points = int.Parse(tokens[5]);
+
+            // colon lets you manually assign values 
+            return new Player(
+                fullName : fullName, 
+                position : position, 
+                primaryNumber: primaryNumber, 
+                goals: goals, 
+                assists: assists);
+
+        }
+
+        public static bool TryParse(string line, out Player player)
+        {
+            bool success = false;
+
+            try
+            {
+                player = ParseCsv(line);
+                success = true;
+            }
+            catch(FormatException ex)
+            {
+                throw new FormatException(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Player TryParse exception {ex.Message}");
+            }
+            return success;
+        }
     }
 }

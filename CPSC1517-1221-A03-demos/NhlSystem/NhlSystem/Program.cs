@@ -1,21 +1,22 @@
 ﻿using NhlSystem;
 using System.IO;
 using System.Text.Json;
+using System.Xml.Serialization;
 /* Test Plan for Person
- * 
- * Test Case                    Test Data                   Expected Result
- * ---------                    ---------                   ---------------
- * Valid Fullname               FullName: Connor McDavid    FullName = Connor McDavid
- *  
- * Null Fullname                Fullname: null              ArgumentNullException
- * 
- * Empty Fullname               FullName: ""                ArgumentNullException
- * 
- * Whitespace Fullname          FullName: "  "              ArgumentNullException
- * 
- * Full Less than 3 characters  FullName: AB                ArgumentException
- * 
- */
+* 
+* Test Case                    Test Data                   Expected Result
+* ---------                    ---------                   ---------------
+* Valid Fullname               FullName: Connor McDavid    FullName = Connor McDavid
+*  
+* Null Fullname                Fullname: null              ArgumentNullException
+* 
+* Empty Fullname               FullName: ""                ArgumentNullException
+* 
+* Whitespace Fullname          FullName: "  "              ArgumentNullException
+* 
+* Full Less than 3 characters  FullName: AB                ArgumentException
+* 
+*/
 
 //Test Case 1: Valid FullName
 var validPerson = new Person("Connor McDavid");
@@ -134,6 +135,71 @@ static void CreatePlayersCsvFile()
 
 //CreatePlayersCsvFile();
 
+static Team ReadPlayersCsvFile()
+{
+    const string PlayersCsvFile = "../../../Players.csv";
+    Coach teamCoach = new Coach("Jay Woodcroft", DateTime.Parse("2020-02-10"));
+    Team oilersTeam = new Team("Edmonton Oilers", teamCoach);
+    try
+    {
+        string[] allLines = File.ReadAllLines(PlayersCsvFile);
+        foreach(string currentLine in allLines)
+        {
+            try
+            {
+                Player currentPlayer = null;
+                bool success = Player.TryParse(currentLine, out currentPlayer);
+                if (success)
+                {
+                    oilersTeam.AddPlayer(currentPlayer);
+                }
+            }
+            catch(FormatException ex)
+            {
+                Console.WriteLine($"Format exception {ex.Message}");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error parsing data from line with exception {ex.Message}");
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.WriteLine($"Error reading from file with exception {ex.Message}");
+    }
+    return oilersTeam;
+        
+}
+
+static void DisplayTeam(Team currentTeam)
+{
+    if (currentTeam == null)
+    {
+        Console.WriteLine("Hey you, stop passing nulls for the team");
+        Console.WriteLine("There is no team supplied");
+    }
+    else
+    {
+        //display the team name
+        Console.WriteLine($"Tea, : {currentTeam.TeamName}");
+        //display the coach name and hire date
+        Console.WriteLine($"{currentTeam.Coach.FullName} hired on {currentTeam.Coach.HireDate.ToString("MMM, dd, yyyy")}");
+        //display the name, number, position, goals, assists, and points for each player
+        foreach (Player currentPlayer in currentTeam.Player)
+        {
+            Console.WriteLine(currentPlayer);
+        }
+    }
+    
+}
+
+
+
+
+
+
+
 static void CreateTeamJsonFile()
 {
     //Create a new Coach for the team
@@ -163,4 +229,4 @@ static void CreateTeamJsonFile()
     File.WriteAllText(TeamJsonFile, jsonString);
 }
 
-CreateTeamJsonFile();
+//CreateTeamJsonFile();
