@@ -2,9 +2,10 @@
 @model RazorSyntaxDemo.Pages.FormExample2Model
 @{
 }
+<div>
+    <h1>LOTTO MAX NUMBERS</h1>
+    @Model.FeedbackMessage
+</div>
 <form method="post">
     <button tupe="submit">Get Lucky Numbers</button>
 </form>
-<div style="background-color: cornflowerblue; padding: 1rem;">
-    @Model.FeedbackMessage
-</div>
