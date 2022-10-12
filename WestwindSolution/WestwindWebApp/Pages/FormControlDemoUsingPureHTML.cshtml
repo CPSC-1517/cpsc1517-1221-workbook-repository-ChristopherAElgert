@@ -1,0 +1,19 @@
+﻿@page
+@model WestwindWebApp.Pages.FormControlDemoUsingPureHTMLModel
+@{
+}
+<div class="alert-info">
+    @Model.FeedbackMessage
+
+</div>
+<form method="post">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" value="@Model.Username"/>
+    </div>
+    <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" min="18" max="65" class="form-control" id="age" value="@Model.Age"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
