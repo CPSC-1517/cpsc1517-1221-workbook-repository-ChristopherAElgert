@@ -20,6 +20,7 @@
     <div class="mb-3">
         <label for="floatingSelect">Gender</label>
         <select class="form-select" id="floatingSelect" asp-for="Gender">
+            <option selected>Select Your Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">Other</option>
@@ -28,7 +29,8 @@
 
     <div class="mb-3">
         <label for="floatingSelect">Department</label>
-        <select class="form-select" id="floatingSelect" asp-for="Department">
+        <select class="form-select" asp-for="Department">
+            <option selected>Select Your Department</option>
             <option value="BAIST">BAIST</option>
             <option value="DMIT">DMIT</option>
             <option value="CNT">CNT</option>
@@ -37,10 +39,10 @@
     </div>
 
     <div class="mb-3">
-        <label class="form-check-label" for="flexCheckDefault">
-            Subscribe?
-        </label>
         <input class="form-check-input" type="checkbox" asp-for="Subscribe"> 
+        <label class="form-check-label" for="flexCheckDefault">
+            Would You Like Subscribe?
+        </label>
     </div>
 
     <div class="mb-3">

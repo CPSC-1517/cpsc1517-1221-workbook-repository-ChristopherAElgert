@@ -33,7 +33,15 @@ namespace WestwindWebApp.Pages
 
         public void OnPost()
         {
-            FeedbackMessage = $"Username = {Username}, Age = {Age}, Gender = {Gender}, Department = {Department}, Subscribed? = {Subscribe}, Your comments = {Comments}";
+            
+            if (Age >= 85)
+            {
+                FeedbackMessage = FeedbackMessage = $"Username = {Username}, Age = {Age}, Gender = {Gender}, Department = {Department}, Subscribed? = {Subscribe}, Your comments = {Comments}, My comments = Damn you old lmao";
+            }
+            else
+            {
+                FeedbackMessage = $"Username = {Username}, Age = {Age}, Gender = {Gender}, Department = {Department}, Subscribed? = {Subscribe}, Your comments = {Comments}";
+            }
         }
     }
 }
