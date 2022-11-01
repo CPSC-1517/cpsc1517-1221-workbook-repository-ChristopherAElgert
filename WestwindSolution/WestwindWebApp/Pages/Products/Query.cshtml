@@ -1,0 +1,20 @@
+﻿@page
+@model WestwindWebApp.Pages.Products.QueryModel
+@{
+}
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="SelectedCategoryId">Department</label>
+
+        <select asp-for="SelectedCategoryId" class="form-select">
+
+            <option selected>--- select a category---</option>
+            @foreach(var currentCategory in Model.CategoryList){
+                <option value="@currentCategory.Id">@currentCategory.CategoryName</option>
+            }
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </select> 
+    </div>
+</form>
