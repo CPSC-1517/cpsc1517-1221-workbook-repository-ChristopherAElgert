@@ -1,20 +1,37 @@
-﻿@page
+﻿@page "{currentSelectedCategoryId?}"
 @model WestwindWebApp.Pages.Products.QueryModel
 @{
 }
+
+@if(!string.IsNullOrWhiteSpace(Model.FeedBackMessage))
+{
+    <div class="altert alert-info">
+        @Model.FeedBackMessage
+    </div>
+}
+
+
 <form method="post">
     <div class="mb-3">
-        <label asp-for="SelectedCategoryId">Department</label>
+        <label asp-for="SelectedCategoryId">Category</label>
 
-        <select asp-for="SelectedCategoryId" class="form-select">
+        @*<select asp-for="SelectedCategoryId" class="form-select">
 
             <option selected>--- select a category---</option>
             @foreach(var currentCategory in Model.CategoryList){
                 <option value="@currentCategory.Id">@currentCategory.CategoryName</option>
             }
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+        </select>*@ 
 
-        </select> 
+        <select asp-for="SelectedCategoryId" 
+                asp-items="@Model.CategorySelectList"
+                class="form-select">
+            <option selected>--- select a category ---</option>
+        </select>
     </div>
+
+    <button type="submit" class="btn btn-primary btn-light" asp-page-handler="SearchByCategory">Search By Category</button>
+    <button type="submit" class="btn btn-primary btn-light" asp-page-handler="SearchByProductName">Search By Product Name</button>
+    <button type="submit" class="btn btn-secondary" asp-page-handler="ClearForm">Clear Form</button>
 </form>

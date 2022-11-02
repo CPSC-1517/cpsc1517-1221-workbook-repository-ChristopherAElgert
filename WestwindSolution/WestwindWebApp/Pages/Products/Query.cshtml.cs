@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 #region namespaces for BLL and Entities
 using WestwindSystem.BLL;
@@ -23,15 +24,42 @@ namespace WestwindWebApp.Pages.Products
         public List<Category> CategoryList { get; private set; }
 
         [BindProperty]
-        public int SelectedCategoryId { get; set; }
+        public int? SelectedCategoryId { get; set; }
+
+        public SelectList CategorySelectList { get; private set; }
         #endregion
 
+        public string FeedBackMessage { get; private set; }
 
-
-        public void OnGet()
+        public void OnGet(int? currentSelectedCategoryId)
         {
+            
             //Fetch from the system (CategoryServices) a list of Category
             CategoryList = _categoryServices.List();
+            CategorySelectList = new SelectList(_categoryServices.List(), "Id", "CategoryName", SelectedCategoryId);
+
+            if (currentSelectedCategoryId.HasValue && currentSelectedCategoryId.Value > 0)
+            {
+                SelectedCategoryId = currentSelectedCategoryId;
+            }
+        }
+
+        public IActionResult OnPostSearchByCategory()
+        {
+            FeedBackMessage = "Clicked on Category Search";
+            return RedirectToPage(new {currentSelectedCategoryId = SelectedCategoryId});
+        }
+
+        public IActionResult OnPostSearchByProductName()
+        {
+            FeedBackMessage = "Clicked on Name Search";
+            return RedirectToPage(new { currentSelectedCategoryId = SelectedCategoryId });
+        }
+
+        public IActionResult OnPostClearForm()
+        {
+            FeedBackMessage = "Clicked on Clear";
+            return RedirectToPage(new { currentSelectedCategoryId = 0});
         }
     }
 }
