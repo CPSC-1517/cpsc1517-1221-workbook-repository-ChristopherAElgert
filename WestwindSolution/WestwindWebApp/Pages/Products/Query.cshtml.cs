@@ -11,55 +11,64 @@ namespace WestwindWebApp.Pages.Products
 {
     public class QueryModel : PageModel
     {
-        #region setup constructor DI
+        #region Setup constructor DI for BLL
         private readonly CategoryServices _categoryServices;
-        
-        public QueryModel(CategoryServices categoryServices)
+        private readonly ProductServices _productServices;
+
+        public QueryModel(CategoryServices categoryServices, ProductServices productServices)
         {
             _categoryServices = categoryServices;
+            _productServices = productServices;
+
+            // Fetch from the system (CategoryServices) a list of Category
+            CategoryList = _categoryServices.List();
+            CategorySelectionList = new SelectList(_categoryServices.List(), "Id", "CategoryName");
+
         }
         #endregion
 
-        #region Property to populate Category select element and track its selected value
+        #region Properties to populate Category select element and track is selected value
         public List<Category> CategoryList { get; private set; }
+        [BindProperty()]
+        public int SelectedCategoryId { get; set; }
+
+        public SelectList CategorySelectionList { get; private set; }
+        #endregion
 
         [BindProperty]
-        public int? SelectedCategoryId { get; set; }
+        public string? QueryProductName { get; set; }
 
-        public SelectList CategorySelectList { get; private set; }
-        #endregion
+        [TempData]
+        public string? FeedbackMessage { get; set; }
 
-        public string FeedBackMessage { get; private set; }
+        public List<Product>? QueryResultList { get; private set; }
 
-        public void OnGet(int? currentSelectedCategoryId)
+        public void OnGet()
         {
-            
-            //Fetch from the system (CategoryServices) a list of Category
-            CategoryList = _categoryServices.List();
-            CategorySelectList = new SelectList(_categoryServices.List(), "Id", "CategoryName", SelectedCategoryId);
 
-            if (currentSelectedCategoryId.HasValue && currentSelectedCategoryId.Value > 0)
-            {
-                SelectedCategoryId = currentSelectedCategoryId;
-            }
         }
 
-        public IActionResult OnPostSearchByCategory()
+        public void OnPostSearchByCategory()
         {
-            FeedBackMessage = "Clicked on Category Search";
-            return RedirectToPage(new {currentSelectedCategoryId = SelectedCategoryId});
+            FeedbackMessage = "You click on Search By Category";
+            QueryResultList = _productServices.FindProductsByCategoryId(SelectedCategoryId);
+            //return RedirectToPage(new { currentSelectedCategoryId = SelectedCategoryId });
         }
 
-        public IActionResult OnPostSearchByProductName()
+        public void OnPostSearchByProductName()
         {
-            FeedBackMessage = "Clicked on Name Search";
-            return RedirectToPage(new { currentSelectedCategoryId = SelectedCategoryId });
+            FeedbackMessage = "You click on Search By Product Name";
+            QueryResultList = _productServices.FindProductsByProductName(QueryProductName);
+
+            //return RedirectToPage();
         }
 
         public IActionResult OnPostClearForm()
         {
-            FeedBackMessage = "Clicked on Clear";
-            return RedirectToPage(new { currentSelectedCategoryId = 0});
+            FeedbackMessage = "You click on Clear button";
+            //SelectedCategoryId = 0;
+            //QueryProductName = null;
+            return RedirectToPage();
         }
     }
 }

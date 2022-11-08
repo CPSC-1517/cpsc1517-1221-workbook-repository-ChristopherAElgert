@@ -3,7 +3,7 @@ using WestwindSystem.Entities;
 
 namespace WestwindSystem.DAL
 {
-    internal class WestwindContext: DbContext
+    internal class WestwindContext : DbContext
     {
         public WestwindContext(DbContextOptions<WestwindContext> options) : base(options)
         {
@@ -13,5 +13,8 @@ namespace WestwindSystem.DAL
         public DbSet<BuildVersion> BuildVersions => Set<BuildVersion>();
 
         public DbSet<Category> Categories => Set<Category>();
+
+        public DbSet<Product> Products => Set<Product>();
+
     }
 }
