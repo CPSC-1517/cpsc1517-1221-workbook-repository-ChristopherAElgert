@@ -8,23 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\celgert1\\.nuget\\packages\\": {},
+    "C:\\Users\\celgert1.NAIT\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\celgert1\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj",
+      "projectUniqueName": "C:\\Users\\celgert1.NAIT\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj",
       "projectName": "LinqDemo",
-      "projectPath": "C:\\Users\\celgert1\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj",
-      "packagesPath": "C:\\Users\\celgert1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\celgert1\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\obj\\",
+      "projectPath": "C:\\Users\\celgert1.NAIT\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\LinqDemo.csproj",
+      "packagesPath": "C:\\Users\\celgert1.NAIT\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\celgert1.NAIT\\source\\repos\\cpsc1517-1221-workbook-repository-ChristopherAElgert\\CPSC1517-1221-A03-demos\\LinqDemo\\LinqDemo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\celgert1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\celgert1.NAIT\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
