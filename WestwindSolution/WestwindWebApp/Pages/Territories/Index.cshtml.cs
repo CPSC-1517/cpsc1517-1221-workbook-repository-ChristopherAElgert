@@ -1,45 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
 using WestwindSystem.Entities;
 using WestwindSystem.BLL;
+using System.Runtime.CompilerServices;
 using WestwindWebApp.Helpers;
 
 namespace WestwindWebApp.Pages.Territories
 {
-    public class QueryModel : PageModel
+    public class IndexModel : PageModel
     {
-        private readonly RegionServices _regionServices;
         private readonly TerritoryServices _territoryServices;
+
+        public IndexModel(TerritoryServices territoryServices)
+        {
+            _territoryServices = territoryServices;
+        }
+
+        public List<Territory>? QueryResultList { get; private set; }
+
+
         public string InfoMessage { get; set; }
         public string ErrorMessage { get; set; }
 
         #region Paginator
         //my desired page size
-        private const int PAGE_SIZE = 5;
+        private const int PAGE_SIZE = 10;
         //be able to hold an instance of the Paginator
         public Paginator Pager { get; set; }
         #endregion
 
-        public QueryModel(RegionServices regionServices, TerritoryServices territoryServices)
-        {
-            _regionServices = regionServices;
-            _territoryServices = territoryServices;
-
-            Regions = _regionServices.GetAll();
-        }
-
-        public List<Region> Regions { get; private set; }
-
-        [BindProperty]
-        public int? SelectedRegionId { get; set; }
-
-        public List<Territory> QueryResultList { get; private set; }
-        
-        public string? FeedbackMessage { get; set; }
-
-        [BindProperty]
-        public string TerritoryQuery { get; set; }
 
         public void OnGet(int? currentPage)
         {
@@ -63,7 +52,7 @@ namespace WestwindWebApp.Pages.Territories
                 //create the needed Pagnator instance
                 Pager = new Paginator(totalcount, current);
 
-
+                
 
                 InfoMessage = $"Query returned {QueryResultList.Count} results";
             }
@@ -71,31 +60,7 @@ namespace WestwindWebApp.Pages.Territories
             {
                 ErrorMessage = "Error Reading Territories";
             }
-        }
-
-        public void OnPostFilterByTerritory()
-        {
-            if (TerritoryQuery != null)
-            {
-                QueryResultList = _territoryServices.FindByPartialName(TerritoryQuery);
-            }
-            else
-            {
-                FeedbackMessage = "You need to enter a territory first.";
-            }
-        }
-
-        public void OnPostFilterByRegion()
-        {
-            // Check if a valid region was selected
-            if (SelectedRegionId.HasValue)
-            {
-                QueryResultList = _territoryServices.FindByRegionId(SelectedRegionId.Value);
-            }
-            else
-            {
-                FeedbackMessage = "You must select a region first.";
-            }
+            
         }
     }
 }

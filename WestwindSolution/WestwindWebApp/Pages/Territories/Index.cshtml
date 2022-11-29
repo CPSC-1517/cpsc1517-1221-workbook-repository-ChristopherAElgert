@@ -1,51 +1,26 @@
 ﻿@page
-@model WestwindWebApp.Pages.Territories.QueryModel
+@model WestwindWebApp.Pages.Territories.IndexModel
 @{
 }
-<h1>Territory Queries</h1>
 
-@if(Model.FeedbackMessage != null)
+<h1>Territories</h1>
+
+@if (Model.InfoMessage != null)
 {
-    <div class="alert alert-warning">
-        @Model.FeedbackMessage
-    </div>
+
 }
-
-<form method="post">
-    <div>
-        <label asp-for="SelectedRegionId">Select region:</label>
-        <select asp-for="SelectedRegionId"
-            class="form-select" >
-            <option selected>Open this select menu</option>
-            @foreach(var currentRegion in Model.Regions)
-            {
-                <option value="@currentRegion.RegionId">@currentRegion.RegionDescription</option>
-            }
-        </select>
-    </div>
-    <div>
-        <label asp-for="TerritoryQuery">Name:</label>
-        <input asp-for="TerritoryQuery" class="form-control"/>
-    </div>
-    <div>
-        <button type="submit"
-                asp-page-handler="FilterByRegion"
-            class="btn btn-primary">Search by Region</button>
-        <button type="submit"
-                asp-page-handler="FilterByTerritory"
-                class="btn btn-primary">
-            Search by Name
-        </button>
-    </div>
-</form>
-
-@if(Model.QueryResultList != null && Model.QueryResultList.Count > 0) 
+@if (Model.ErrorMessage != null)
 {
-    <table>
+
+}
+@if(Model.QueryResultList != null && Model.QueryResultList.Count > 0)
+{
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th style="width: 200px">ID</th>
-                <th>Name</th>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Region</th>
             </tr>
         </thead>
         <tbody>
@@ -54,6 +29,7 @@
                 <tr>
                     <td>@currentTerritory.TerritoryId</td>
                     <td>@currentTerritory.TerritoryDescription</td>
+                    <td>@currentTerritory.Region.RegionDescription</td>
                 </tr>
             }
         </tbody>
@@ -88,8 +64,8 @@
                                 //for the asp-page your page name reference
                                 //  MUST be based from the folder name Pages
                                 <a title="Page @pageRef.Page"
-                   asp-page="/Territories/Query"
-                   asp-route-currentpage="@pageRef.Page">
+                                    asp-page="/Territories/Index"
+                                    asp-route-currentpage="@pageRef.Page">
                                     @pageRef.Text
                                 </a>
                             }
