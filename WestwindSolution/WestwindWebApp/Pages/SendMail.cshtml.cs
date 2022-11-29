@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
 using System.Net;
-using System.Net.Mail;
+using System.Net.Mail;  // for WebMail class
 
 namespace WestwindWebApp.Pages
 {
@@ -10,12 +9,12 @@ namespace WestwindWebApp.Pages
     {
         public void OnGet()
         {
-            var gmailUserName = Configuration["GmailCreddentials:Username"];
-            var gmailAppPassword = Configuration["GmailCreddentials:Password"];
-
-            FeedbackMessage = $"Gmail Username = {gmailUserName} <br />";
-            FeedbackMessage += $"Gmail Password = {gmailAppPassword} <br />";
+            //var gmailUsername = Configuration["GmailCredentials:Username"];
+            //var gmailAppPassword = Configuration["GmailCredentials:Password"];
+            //FeedbackMessage = $"Gmail username = {gmailUsername} <br />";
+            //FeedbackMessage += $"Gmail app password = {gmailAppPassword} <br />";
         }
+
         private readonly IConfiguration Configuration;
 
         public SendMailModel(IConfiguration configuration)
@@ -24,43 +23,41 @@ namespace WestwindWebApp.Pages
         }
 
         [BindProperty]
-        public string FeedbackMessage { get; set; }
+        public string FeedbackMessage { get; set; } = string.Empty;
 
         [BindProperty]
-        public string Username { get; set; }
+        public string MailUsername { get; set; } = string.Empty;
 
         [BindProperty]
-        public string Password { get; set; }
+        public string MailAppPassword { get; set; } = string.Empty;
 
         [BindProperty]
-        public string Recipient { get; set; }
+        public string MailToAddress { get; set; } = string.Empty;
 
         [BindProperty]
-        public string MailSubject { get; set; }
+        public string MailSubject { get; set; } = string.Empty;
 
         [BindProperty]
-        public string MailMessage { get; set; }
-
+        public string MailMessage { get; set; } = string.Empty;
 
         public void OnPostSendMail()
         {
             //FeedbackMessage = "<h2>Send Mail button clicked</h2>";
-      
             var sendMailClient = new SmtpClient();
-            sendMailClient.Host = "smtp@gmail.com";
+            sendMailClient.Host = "smtp.gmail.com";
             sendMailClient.Port = 587;
             sendMailClient.EnableSsl = true;
 
             var sendMailCredentials = new NetworkCredential();
-            //sendMailCredentials.UserName = Username;
-            //sendMailCredentials.Password = Password;
-            sendMailCredentials.UserName = Configuration["GmailCreddentials:Username"];
-            sendMailCredentials.Password = Configuration["GmailCreddentials:Password"];
+            MailUsername = Configuration["GmailCredentials:Username"];
+            MailAppPassword = Configuration["GmailCredentials:Password"];
+            sendMailCredentials.UserName = MailUsername;
+            sendMailCredentials.Password = MailAppPassword;
+
             sendMailClient.Credentials = sendMailCredentials;
 
-            //var sendFromAddress = new MailAddress(Username);
-            var sendFromAddress = new MailAddress(Configuration["GmailCreddentials:Username"]);
-            var sendToAddress = new MailAddress(Recipient);
+            var sendFromAddress = new MailAddress(MailUsername);
+            var sendToAddress = new MailAddress(MailToAddress);
 
             var mailMessage = new MailMessage(sendFromAddress, sendToAddress);
             mailMessage.Subject = MailSubject;
@@ -69,23 +66,23 @@ namespace WestwindWebApp.Pages
             try
             {
                 sendMailClient.Send(mailMessage);
-                FeedbackMessage = "<div class ='alert alert-primary'>Email Sent</div>";
+                // Clear the form fields associated with the properties below
+                MailToAddress = "";
+                MailSubject = "";
+                MailMessage = "";
+                FeedbackMessage = "<div class='alert alert-primary'>Email Sent!</div>";
             }
             catch (Exception ex)
             {
-                FeedbackMessage = $"<div class ='alert alert-danger'>Error sending mail {ex}</div>";
+                FeedbackMessage = $"<div class='alert alert-danger'>Error sending email {ex.Message}</div>";
             }
         }
 
         public void OnPostClearForm()
         {
             FeedbackMessage = "<h2>Clear Form button clicked</h2>";
-            
         }
-        
-        public void OnPost()
-        {
 
-        }
+   
     }
 }

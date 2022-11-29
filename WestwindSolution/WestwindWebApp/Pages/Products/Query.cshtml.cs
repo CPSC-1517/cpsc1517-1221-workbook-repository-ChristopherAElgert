@@ -44,7 +44,7 @@ namespace WestwindWebApp.Pages.Products
         public List<Product>? QueryResultList { get; private set; }
 
         public void OnGet()
-        {
+        {            
 
         }
 

@@ -1,7 +1,7 @@
 ﻿using WestwindSystem.DAL;
 using WestwindSystem.Entities;
 
-namespace WestwindSystem.Entities
+namespace WestwindSystem.BLL
 {
     public class BuildVersionServices
     {

@@ -1,12 +1,12 @@
-#region custom namespaces required to set up database services
-using Microsoft.EntityFrameworkCore;
-using WestwindSystem; // To be able to set extension method AddBackendDependencies in StartupExtensions.cs
+#region namespaces required to setup database services
+using Microsoft.EntityFrameworkCore; // Namespace that contains the UseSqlServer() extension method
+using WestwindSystem; // Namespace that contains the AddBackendDependencies() extension method
 #endregion
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region code required to setup database services
-
+// Connection string is defined in appsettings.json
 var dbConnectionString = builder.Configuration.GetConnectionString("WestwindLocalDb");
 builder.Services.AddBackendDependencies(options => options.UseSqlServer(dbConnectionString));
 

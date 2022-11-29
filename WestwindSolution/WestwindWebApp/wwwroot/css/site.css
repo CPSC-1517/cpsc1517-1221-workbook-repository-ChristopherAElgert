@@ -15,4 +15,13 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: darkslategrey;
+  color: white;
+  font-family: Impact;
+}
+th {
+    color: gold;
+}
+td {
+    color: white;
 }

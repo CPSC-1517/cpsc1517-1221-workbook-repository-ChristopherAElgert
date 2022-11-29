@@ -9,48 +9,88 @@
 
     <div class="mb-3">
         <label asp-for="Username" class="form-label">Username</label>
-        <input type="text" class="form-control" placeholder="Enter your name" asp-for="Username" />
+        <input asp-for="Username"
+               class="form-control"
+               placeholder="Enter your name"
+                 />
     </div>
-
     <div class="mb-3">
         <label asp-for="Age" class="form-label">Age</label>
-        <input type="number" min="18" max="100" class="form-control" asp-for="Age" />
+        <input asp-for="Age" 
+               min="18" max="99"
+               class="form-control"                              
+               />
     </div>
 
-    <div class="mb-3">
-        <label for="floatingSelect">Gender</label>
-        <select class="form-select" id="floatingSelect" asp-for="Gender">
-            <option selected>Select Your Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-        </select>
+    <div class="btn-group" role="group">
+        Gender:
+        
+        @*<div class="form-check">
+            <input class="form-check-input" type="radio" 
+                asp-for="Gender" value="Male">
+            <label class="form-check-label" asp-for="Gender">
+                Male
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" 
+                asp-for="Gender" value="Female" checked>
+            <label class="form-check-label" asp-for="Gender">
+                Female
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio"
+                   asp-for="Gender" value="Unspecified">
+            <label class="form-check-label" asp-for="Gender">
+                Unspecified
+            </label>
+        </div>*@
+
+        @foreach (var currentGender in Model.GenderOptions)
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="radio"
+                   asp-for="Gender"
+                   id="Gender@(currentGender)"
+                   value="@currentGender">
+                <label class="form-check-label" asp-for="Gender">
+                    @currentGender
+                </label>
+            </div>
+        }
     </div>
 
-    <div class="mb-3">
-        <label for="floatingSelect">Department</label>
-        <select class="form-select" asp-for="Department">
-            <option selected>Select Your Department</option>
-            <option value="BAIST">BAIST</option>
-            <option value="DMIT">DMIT</option>
-            <option value="CNT">CNT</option>
-            <option value="CET">CET</option>
-        </select>
-    </div>
+    <label asp-for="Department">Department</label>
+   @* <select asp-for="Department"
+        class="form-select" aria-label="Department">
+        <option selected >Open this select menu</option>
+        <option value="DMIT">Digital Media and IT</option>
+        <option value="BAIST">Bachelor of Applied Information Systems Technology</option>
+        <option value="CNT">Computer Network Technology</option>
+        <option value="CET">Computer Engineering Technology</option>
+    </select>*@
+    <select asp-for="Department"
+            class="form-select" 
+            asp-items="Model.DepartmentListItems"
+            aria-label="Department">
+        <option selected>Open this select menu</option>        
+    </select>
 
     <div class="mb-3">
-        <input class="form-check-input" type="checkbox" asp-for="Subscribe"> 
-        <label class="form-check-label" for="flexCheckDefault">
-            Would You Like Subscribe?
+        <label asp-for="Comments">Comments</label>
+        <textarea asp-for="Comments" cols="50" rows="5" class="form-control">
+        </textarea>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" 
+            asp-for="Subscribe" >
+        <label class="form-check-label" asp-for="Subscribe">
+            Subcribe to promotions
         </label>
-    </div>
-
-    <div class="mb-3">
-        <label for="floatingTextarea">Comments</label>
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" asp-for="Comments"></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
-

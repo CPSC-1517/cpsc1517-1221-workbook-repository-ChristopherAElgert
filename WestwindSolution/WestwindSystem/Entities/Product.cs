@@ -12,11 +12,21 @@ namespace WestwindSystem.Entities
 
         public string ProductName { get; set; } = null!;
 
-        //[Column(TypeName="money")]
+        public string QuantityPerUnit { get; set; } = null!;
+
+        [Column(TypeName="money")]
         public decimal UnitPrice { get; set; }
+
+        public int UnitsOnOrder { get; set; }
+
+        public bool Discontinued { get; set; } 
+
+        public int SupplierId { get; set; }
 
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; } = null!;
+
+        public virtual Supplier Supplier { get; set; } = null!;
     }
 }

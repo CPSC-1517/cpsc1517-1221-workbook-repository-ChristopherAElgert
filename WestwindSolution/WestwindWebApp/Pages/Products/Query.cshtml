@@ -1,9 +1,9 @@
-﻿@page
+﻿@page 
 @model WestwindWebApp.Pages.Products.QueryModel
 @{
 }
 
-@if (!string.IsNullOrWhiteSpace(Model.FeedbackMessage))
+@if (!string.IsNullOrWhiteSpace(Model.FeedbackMessage)) 
 {
     <div class="alert alert-info">
         @Model.FeedbackMessage
@@ -14,17 +14,18 @@
     <div class="mb-3">
 
         <label asp-for="SelectedCategoryId">Category</label>
-        @* <select asp-for="SelectedCategoryId"
-        class="form-select"
-        aria-label="Category">
-        <option selected >--- select a category ---</option>
-        @foreach(var currentCategory in Model.CategoryList)
-        {
-        <option value="@currentCategory.Id">@currentCategory.CategoryName</option>
-        }
+       @* <select asp-for="SelectedCategoryId"
+                class="form-select" 
+                aria-label="Category">
+            <option selected >--- select a category ---</option>            
+            @foreach(var currentCategory in Model.CategoryList) 
+            {
+                <option value="@currentCategory.Id">@currentCategory.CategoryName</option>
+            }
         </select>*@
-        <select asp-for="SelectedCategoryId"
-                asp-items="Model.CategorySelectionList">
+        <select 
+            asp-for="SelectedCategoryId"
+            asp-items="Model.CategorySelectionList">
             <option selected>--- select a category ---</option>
         </select>
     </div>

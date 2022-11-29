@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-#region custom namespaces
+#region custom namepsaces
 using WestwindSystem.BLL;
 using WestwindSystem.Entities;
-#endregion
+#endregion 
 
 namespace WestwindWebApp.Pages
 {
